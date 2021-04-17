@@ -73,7 +73,7 @@ public class VilleInfoController extends HttpServlet {
 			listeVille.add(ville);
 		}
 		System.out.println(listeVille.size());
-		if(nbPage < 1 || nbPage > listeVille.size()/50 + 1) {
+		if(nbPage < 1 || nbPage > listeVille.size()/50 ) {
 			this.getServletContext().getRequestDispatcher("/WEB-INF/badRequest.jsp").forward(request, response);
 		}
 		request.setAttribute("listeVille", listeVille);
