@@ -65,5 +65,16 @@ public class Ville {
 	public void setCoord(Coordonnees coord) {
 		this.coord = coord;
 	}
+	
+	public double distanceWith(Ville ville) {
+		// On utilise la méthode de haversine
+		double latA = Double.parseDouble(this.getCoord().getLatitude());
+		double longA = Double.parseDouble(this.getCoord().getLongitude());
+		double latB = Double.parseDouble(ville.getCoord().getLatitude());
+		double longB = Double.parseDouble(ville.getCoord().getLatitude());
+		double a = Math.pow(Math.sin((latB-latA)/2), 2) + Math.cos(latA)*Math.cos(latB)*Math.pow(Math.sin((longB-longA)/2), 2);
+		double c = 2*Math.atan(Math.sqrt(a)/Math.sqrt(1-a));
+		return 6371*c;
+	}
 
 }
