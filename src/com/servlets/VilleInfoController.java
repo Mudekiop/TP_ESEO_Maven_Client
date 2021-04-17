@@ -26,11 +26,11 @@ import com.google.gson.Gson;
 /**
  * Servlet implementation class VilleController
  */
-@WebServlet("/VilleController")
-public class VilleController extends HttpServlet {
+@WebServlet("/VilleInfoController")
+public class VilleInfoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public VilleController() {
+	public VilleInfoController() {
 		super();
 	}
 
@@ -58,6 +58,7 @@ public class VilleController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		int nbPage = Integer.parseInt(request.getParameter("page"));
 		JSONArray jsonArray = null;
 		JSONObject json = null;
 		List<Ville> listeVille = new ArrayList<Ville>();
@@ -70,11 +71,13 @@ public class VilleController extends HttpServlet {
 			json = jsonArray.getJSONObject(i);
 			Ville ville = new Gson().fromJson(json.toString(), Ville.class);
 			listeVille.add(ville);
-			System.out.println(ville.toString());
 		}
-
+		System.out.println(listeVille.size());
+		if(nbPage < 1 || nbPage > listeVille.size()/50 + 1) {
+			this.getServletContext().getRequestDispatcher("/WEB-INF/badRequest.jsp").forward(request, response);
+		}
 		request.setAttribute("listeVille", listeVille);
-		this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp").forward(request, response);
+		this.getServletContext().getRequestDispatcher("/WEB-INF/infosVille.jsp").forward(request, response);
 
 	}
 

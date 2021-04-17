@@ -67,7 +67,7 @@ public class Ville {
 	}
 	
 	public double distanceWith(Ville ville) {
-		// On utilise la méthode de haversine
+		// On utilise la mÃ©thode de haversine
 		double latA = Double.parseDouble(this.getCoord().getLatitude());
 		double longA = Double.parseDouble(this.getCoord().getLongitude());
 		double latB = Double.parseDouble(ville.getCoord().getLatitude());

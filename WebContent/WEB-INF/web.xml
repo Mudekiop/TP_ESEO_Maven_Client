@@ -12,6 +12,15 @@
 		<url-pattern>/accueil</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>VilleInfoController</servlet-name>
+		<servlet-class>com.servlets.VilleInfoController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>VilleInfoController</servlet-name>
+		<url-pattern>/infosVille</url-pattern>
+	</servlet-mapping>
+
 	<jsp-config>
 		<jsp-property-group>
 			<url-pattern>*.jsp</url-pattern>
