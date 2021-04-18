@@ -34,10 +34,10 @@ public class VilleInfoController extends HttpServlet {
 		super();
 	}
 
-	private static String readAll(Reader rd) throws IOException {
+	private static String readAll(Reader reader) throws IOException {
 		StringBuilder sb = new StringBuilder();
 		int cp;
-		while ((cp = rd.read()) != -1) {
+		while ((cp = reader.read()) != -1) {
 			sb.append((char) cp);
 		}
 		return sb.toString();
@@ -58,6 +58,9 @@ public class VilleInfoController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		if (request.getParameter("page") == null) {
+			this.getServletContext().getRequestDispatcher("/WEB-INF/badRequest.jsp").forward(request, response);
+		}
 		int nbPage = Integer.parseInt(request.getParameter("page"));
 		JSONArray jsonArray = null;
 		JSONObject json = null;
@@ -72,12 +75,22 @@ public class VilleInfoController extends HttpServlet {
 			Ville ville = new Gson().fromJson(json.toString(), Ville.class);
 			listeVille.add(ville);
 		}
-		System.out.println(listeVille.size());
-		if(nbPage < 1 || nbPage > listeVille.size()/50 ) {
+
+		if (nbPage < 1 || nbPage > listeVille.size() / 50 + 1) {
 			this.getServletContext().getRequestDispatcher("/WEB-INF/badRequest.jsp").forward(request, response);
+		} else {
+			boolean resultat;
+			if (nbPage == (listeVille.size() / 50 + 1)) {
+				resultat = true;
+			} else {
+				resultat = false;
+			}
+			request.setAttribute("bool", resultat);
+			request.setAttribute("nbPage", nbPage);
+			request.setAttribute("taille", (nbPage - 1) * 50);
+			request.setAttribute("listeVille", listeVille);
+			this.getServletContext().getRequestDispatcher("/WEB-INF/listeVilles.jsp").forward(request, response);
 		}
-		request.setAttribute("listeVille", listeVille);
-		this.getServletContext().getRequestDispatcher("/WEB-INF/infosVille.jsp").forward(request, response);
 
 	}
 

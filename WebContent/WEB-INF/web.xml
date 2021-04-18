@@ -18,6 +18,15 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>VilleInfoController</servlet-name>
+		<url-pattern>/listeVilles</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>InfoPourVilleController</servlet-name>
+		<servlet-class>com.servlets.InfoPourVilleController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>InfoPourVilleController</servlet-name>
 		<url-pattern>/infosVille</url-pattern>
 	</servlet-mapping>
 
