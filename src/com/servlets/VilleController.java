@@ -89,9 +89,8 @@ public class VilleController extends HttpServlet {
 		String distance = "La distance entre " + request.getParameter("ville1").split(";")[2] +
 				" et " + request.getParameter("ville2").split(";")[2] + " est de " +
 				ville1.distanceWith(ville2) + " km.";
-		System.out.println(distance);
-//		request.setAttribute("distance", distance);
-//		this.getServletContext().getRequestDispatcher("/WEB-INF/distance.jsp").forward(request, response);
+		request.setAttribute("distance", distance);
+		doGet(request, response);
 	}
 
 }
