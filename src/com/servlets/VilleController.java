@@ -20,6 +20,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.beans.Coordonnees;
 import com.beans.Ville;
 import com.google.gson.Gson;
 
@@ -70,17 +71,27 @@ public class VilleController extends HttpServlet {
 			json = jsonArray.getJSONObject(i);
 			Ville ville = new Gson().fromJson(json.toString(), Ville.class);
 			listeVille.add(ville);
-			System.out.println(ville.toString());
 		}
 
 		request.setAttribute("listeVille", listeVille);
-		this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp").forward(request, response);
+		this.getServletContext().getRequestDispatcher("/WEB-INF/distance.jsp").forward(request, response);
 
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doGet(request, response);
+		Ville ville1 = new Ville();
+		ville1.setCoord(new Coordonnees(request.getParameter("ville1").split(";")[0],
+				request.getParameter("ville1").split(";")[1]));
+		Ville ville2 = new Ville();
+		ville2.setCoord(new Coordonnees(request.getParameter("ville2").split(";")[0],
+				request.getParameter("ville2").split(";")[1]));
+		String distance = "La distance entre " + request.getParameter("ville1").split(";")[2] +
+				" et " + request.getParameter("ville2").split(";")[2] + " est de " +
+				ville1.distanceWith(ville2) + " km.";
+		System.out.println(distance);
+//		request.setAttribute("distance", distance);
+//		this.getServletContext().getRequestDispatcher("/WEB-INF/distance.jsp").forward(request, response);
 	}
 
 }

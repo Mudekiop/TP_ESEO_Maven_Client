@@ -9,6 +9,9 @@ public class Ville {
 	private String ligne;
 	private Coordonnees coord;
 
+	public Ville() {
+	}
+
 	public Ville(String insee, String nom, String code, String libelle, String ligne, Coordonnees coord) {
 		this.insee = insee;
 		this.nom = nom;
@@ -67,14 +70,15 @@ public class Ville {
 	}
 	
 	public double distanceWith(Ville ville) {
-		// On utilise la mÃ©thode de haversine
-		double latA = Double.parseDouble(this.getCoord().getLatitude());
-		double longA = Double.parseDouble(this.getCoord().getLongitude());
-		double latB = Double.parseDouble(ville.getCoord().getLatitude());
-		double longB = Double.parseDouble(ville.getCoord().getLatitude());
+		// On utilise la méthode de haversine
+		double latA = Double.parseDouble(this.getCoord().getLatitude())*Math.PI/180;
+		double longA = Double.parseDouble(this.getCoord().getLongitude())*Math.PI/180;
+		double latB = Double.parseDouble(ville.getCoord().getLatitude())*Math.PI/180;
+		double longB = Double.parseDouble(ville.getCoord().getLongitude())*Math.PI/180;
 		double a = Math.pow(Math.sin((latB-latA)/2), 2) + Math.cos(latA)*Math.cos(latB)*Math.pow(Math.sin((longB-longA)/2), 2);
-		double c = 2*Math.atan(Math.sqrt(a)/Math.sqrt(1-a));
-		return 6371*c;
+		double c = 2*Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+		double d = 6371*c;
+		return (double) Math.round(d * 100) / 100; // arrondi deux chiffres après la virgule
 	}
 
 }
