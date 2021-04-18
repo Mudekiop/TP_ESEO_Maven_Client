@@ -83,13 +83,16 @@ public class VilleController extends HttpServlet {
 		Ville ville1 = new Ville();
 		ville1.setCoord(new Coordonnees(request.getParameter("ville1").split(";")[0],
 				request.getParameter("ville1").split(";")[1]));
+		ville1.setNom(request.getParameter("ville1").split(";")[2]);
 		Ville ville2 = new Ville();
 		ville2.setCoord(new Coordonnees(request.getParameter("ville2").split(";")[0],
 				request.getParameter("ville2").split(";")[1]));
-		String distance = "La distance entre " + request.getParameter("ville1").split(";")[2] +
-				" et " + request.getParameter("ville2").split(";")[2] + " est de " +
-				ville1.distanceWith(ville2) + " km.";
+		ville2.setNom(request.getParameter("ville2").split(";")[2]);
+		String distance = "La distance entre " + ville1.getNom() + " et " + ville2.getNom() + " est de "
+				+ ville1.distanceWith(ville2) + " km.";
 		request.setAttribute("distance", distance);
+		request.setAttribute("selection1", ville1.getNom());
+		request.setAttribute("selection2", ville2.getNom());
 		doGet(request, response);
 	}
 
