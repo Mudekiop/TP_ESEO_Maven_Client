@@ -74,5 +74,7 @@ body {
 		<p id="next"><a href="/ESEO_TP_Client/listeVilles?page=${nbPage + 1 }">Page suivante</a></p>
 	</c:if>
 	
+	<a href="/ESEO_TP_Client/distance">Retour à la page principale</a>
+	
 </body>
 </html>

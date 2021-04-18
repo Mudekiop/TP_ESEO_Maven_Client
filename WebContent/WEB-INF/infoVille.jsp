@@ -35,6 +35,8 @@ h1{
 		<input type="submit" name="send" value="Mettre a jour"/>	
 		<input type="submit" name="send" value="Supprimer la ville" />
 	</form>
-
+	
+	<a href="/ESEO_TP_Client/distance">Retour à la page principale</a>
+	
 </body>
 </html>

@@ -27,7 +27,7 @@ body {
 
 	<p id="msg">La page que vous recherchez n'existe pas !</p>
 	<p id="error">Veuillez renseigner un paramètre valide dans l'url !</p>
-	<a href="/ESEO_TP_Client/listeVilles?page=1">Retour à la page principale</a>
+	<a href="/ESEO_TP_Client/distance">Retour à la page principale</a>
 
 </body>
 </html>
