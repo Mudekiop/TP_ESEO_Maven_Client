@@ -26,11 +26,11 @@ import com.google.gson.Gson;
 /**
  * Servlet implementation class VilleController
  */
-@WebServlet("/VilleInfoController")
-public class VilleInfoController extends HttpServlet {
+@WebServlet("/ListeVillesController")
+public class ListeVillesController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public VilleInfoController() {
+	public ListeVillesController() {
 		super();
 	}
 

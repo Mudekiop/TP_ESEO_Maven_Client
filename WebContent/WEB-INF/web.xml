@@ -13,11 +13,11 @@
 	</servlet-mapping>
 
 	<servlet>
-		<servlet-name>VilleInfoController</servlet-name>
-		<servlet-class>com.servlets.VilleInfoController</servlet-class>
+		<servlet-name>ListeVillesController</servlet-name>
+		<servlet-class>com.servlets.ListeVillesController</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>VilleInfoController</servlet-name>
+		<servlet-name>ListeVillesController</servlet-name>
 		<url-pattern>/listeVilles</url-pattern>
 	</servlet-mapping>
 
